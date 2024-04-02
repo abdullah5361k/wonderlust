@@ -6,6 +6,7 @@ import List from './Pages/List';
 import Login from "./Pages/Login";
 import SignUp from "./Pages/SignUp";
 import EditList from './Pages/EditList';
+import FeaturesList from './Pages/FeaturesList';
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
       <Route path='/list/detail/:id' element={<List />} />
       <Route path='/list/edit/:id' element={<EditList />} />
       <Route path='/addlist' element={<EditList />} />
+      <Route path='/features' element={<FeaturesList />} />
       <Route path='*' element={<NotFound />} />
     </Routes>
   )

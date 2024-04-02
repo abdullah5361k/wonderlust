@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-function Card({ data }) {
+function Card({ data, isActive }) {
     const navigate = useNavigate();
     return (
         <div
@@ -23,6 +23,7 @@ function Card({ data }) {
                         />
                     </svg>
                     <p className="ml-2 text-sm font-medium text-gray-900">{data.price} / night</p>
+                    {isActive && <p> with 18% GST</p>}
                 </div>
             </div>
         </div>

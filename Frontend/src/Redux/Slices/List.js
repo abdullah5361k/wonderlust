@@ -16,6 +16,7 @@ export const createList = createAsyncThunk("create/list", async (data) => {
         formData.append("location", data.location);
         formData.append("price", data.price);
         formData.append("country", data.country);
+        formData.append("category", data.category);
         const res = axiosInstance.post("/listing/create/list", formData);
         toast.promise(res, {
             loading: "Wait",
@@ -26,7 +27,8 @@ export const createList = createAsyncThunk("create/list", async (data) => {
         });
         return (await res).data;
     } catch (error) {
-        console.log("Error ", error);
+        console.log("err  : ->", error);
+        console.log("Error ", error?.response?.data?.message);
         toast.error(error?.response?.data?.message);
     }
 })
@@ -102,7 +104,7 @@ export const editList = createAsyncThunk("edit/list", async (data) => {
         });
         return (await res).data;
     } catch (error) {
-        console.log("Error ", error);
+        console.log("Error ", error?.response?.data?.message);
         toast.error(error?.response?.data?.message);
     }
 })

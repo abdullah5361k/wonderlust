@@ -5,7 +5,6 @@ import toast, { Toaster } from 'react-hot-toast';
 import { useLocation, useNavigate, useParams } from "react-router-dom"; 4
 import { useDispatch } from "react-redux";
 import { createList, editList } from "../Redux/Slices/List";
-import CategoryDropdown from "../components/CategoryDropdown";
 
 function EditList() {
 
@@ -22,7 +21,8 @@ function EditList() {
         image: state?.image?.url || "",
         price: state?.price || 0,
         country: state?.country || "",
-        location: state?.location || ""
+        location: state?.location || "",
+        category: state?.category || "",
     });
     const categories = ["Room", "Iconic City", "Mountain", "Castle", "Amazing Pool", "Camping", "Farm", "Arctic"];
 
@@ -49,8 +49,7 @@ function EditList() {
         e.preventDefault();
         const addBtn = document.getElementById("add");
         const editBtn = document.getElementById("edit");
-        console.log(listData);
-        if (!listData.country || !listData.title || !listData.description || !listData.image || !listData.price || !listData.location) {
+        if (!listData.country || !listData.title || !listData.description || !listData.image || !listData.price || !listData.location || !listData.category) {
             toast.error("All Fields are mandatory!");
             return;
         }
@@ -136,33 +135,45 @@ function EditList() {
                                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400"
                                 />
                             </div>
-                            <div className="mb-6">
-                                <label htmlFor="country" className="block text-gray-700 text-sm font-bold mb-2">
-                                    Country
-                                </label>
-                                <input
-                                    id="country"
-                                    type="text"
-                                    name="country"
-                                    value={listData.country}
-                                    onChange={handleUserInput}
-                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400"
-                                />
-                            </div>
-                            <div className="mb-6">
-                                <label htmlFor="location" className="block text-gray-700 text-sm font-bold mb-2">
-                                    Location
-                                </label>
-                                <input
-                                    id="location"
-                                    type="text"
-                                    name="location"
-                                    value={listData.location}
-                                    onChange={handleUserInput}
-                                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400"
-                                />
+                            <div className="flex w-full gap-7">
+                                <div className="mb-6">
+                                    <label htmlFor="country" className="block text-gray-700 text-sm font-bold mb-2">
+                                        Country
+                                    </label>
+                                    <input
+                                        id="country"
+                                        type="text"
+                                        name="country"
+                                        value={listData.country}
+                                        onChange={handleUserInput}
+                                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                    />
+                                </div>
+                                <div className="mb-6">
+                                    <label htmlFor="location" className="block text-gray-700 text-sm font-bold mb-2">
+                                        Location
+                                    </label>
+                                    <input
+                                        id="location"
+                                        type="text"
+                                        name="location"
+                                        value={listData.location}
+                                        onChange={handleUserInput}
+                                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                    />
+                                </div>
                             </div>
                             <div>
+                                <label htmlFor="category" className="block text-gray-700 text-sm font-bold mb-2">
+                                    Category:
+                                    <select name="category" value={listData.category} onChange={handleUserInput}>
+                                        {
+                                            categories.map((e, idx) => (
+                                                <option key={idx} value={e}>{e}</option>
+                                            ))
+                                        }
+                                    </select>
+                                </label>
                             </div>
                             {
                                 (
@@ -191,9 +202,9 @@ function EditList() {
                         </form>
                     </div>
                 </div>
-            </div>
+            </div >
             <Footer />
-        </div>
+        </div >
     )
 }
 

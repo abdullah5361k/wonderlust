@@ -102,12 +102,12 @@ function SignUp() {
                     </form>
                 </div>
             </div>
-            <div className="relative">
-                <div className="fixed bootom-0 left-0 right-0">
-                    <Footer />
+            {/* <div className="relative"> */}
+            {/* <div className="fixed bootom-0 left-0 right-0"> */}
+            <Footer />
 
-                </div>
-            </div>
+            {/* </div> */}
+            {/* </div> */}
         </div>
     )
 }
